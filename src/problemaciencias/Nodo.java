@@ -22,5 +22,6 @@ public class Nodo {
         this.nodos = new ArrayList<>();
         depth=d;
         leaf=l;
+        weigth=0;
     }
 }

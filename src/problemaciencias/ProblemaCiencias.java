@@ -17,8 +17,9 @@ public class ProblemaCiencias {
     
     static HashMap<Integer,Integer> depths = new HashMap();
     static ArrayList<Nodo> nodos = new ArrayList<>();
-    static int[] profundidades = {2,2,2,2};
+    static int[] profundidades = {1,1};
     static int chars;
+    static int maxDepth;
     /**
      * @param args the command line arguments
      */
@@ -26,11 +27,23 @@ public class ProblemaCiencias {
         chars=profundidades.length;
         agregarProfundidad(profundidades);
         crearArbol();
-        System.out.println(nodos.size());
+        //System.out.println(nodos.size());
+        maxDepth=maxValue();
+        rellenar(nodos.get(0));
+        System.out.println("La palabra mas corta tiene "+nodos.get(0).weigth+" caracteres");
+        /*for(int i=0;i<nodos.size();i++){
+            System.out.println(i+" - "+nodos.get(i).weigth);
+        }*/
     }
     
-    public static void maxValue(){
-        
+    public static int maxValue(){
+        int aux=0;
+        for(int i =0;i<profundidades.length;i++){
+            if(profundidades[i]>aux){
+                aux=profundidades[i];
+            }
+        }
+        return aux+1;
     }
     
     public static void agregarProfundidad(int[] hola){
@@ -87,6 +100,23 @@ public class ProblemaCiencias {
             crearDivision(h2,depth+1);
             nodos.add(h1);
             nodos.add(h2);
+        }
+    }
+    
+    public static void rellenar(Nodo nod){
+        if(nod.weigth==0){
+            if(nod.leaf){
+               // System.out.println(nod.depth);
+                nod.weigth=maxDepth-nod.depth;
+            }else{
+                if(nod.nodos.get(0).weigth==0){
+                    rellenar(nod.nodos.get(0));
+                }
+                if(nod.nodos.get(1).weigth==0){
+                    rellenar(nod.nodos.get(1));
+                }
+                nod.weigth=nod.nodos.get(0).weigth+nod.nodos.get(1).weigth;
+            }
         }
     }
     
