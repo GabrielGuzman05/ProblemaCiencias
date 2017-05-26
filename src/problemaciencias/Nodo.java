@@ -12,16 +12,17 @@ import java.util.ArrayList;
  * @author Gabriel
  */
 public class Nodo {
+
     int depth;
     int weigth;
     boolean leaf;
     int father;
     ArrayList<Nodo> nodos;
-    
-    Nodo(int d, boolean l){
+
+    Nodo(int d, boolean l) {
         this.nodos = new ArrayList<>();
-        depth=d;
-        leaf=l;
-        weigth=0;
+        depth = d;
+        leaf = l;
+        weigth = 0;
     }
 }
