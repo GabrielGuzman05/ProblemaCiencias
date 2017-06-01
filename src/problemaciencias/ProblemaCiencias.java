@@ -12,6 +12,7 @@ import java.util.HashMap;
  *
  * @author Gabriel
  */
+
 public class ProblemaCiencias {
 
     static HashMap<Integer, Integer> depths = new HashMap();
@@ -24,20 +25,26 @@ public class ProblemaCiencias {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         chars = profundidades.length;
         agregarProfundidad(profundidades);
         crearArbol();
         //System.out.println(nodos.size());
+        
         maxDepth = maxValue();
         rellenarZeros();
+        
         //System.out.println(nodos.get(0).weigth);
+        
         rellenar();
         System.out.println("La palabra mas corta tiene " + nodos.get(0).weigth + " caracteres");
+        
         /*for(int i=0;i<nodos.size();i++){
             System.out.println(i+" - "+nodos.get(i).weigth);
         }*/
- /*
+        
+        /*
         for (Nodo n : nodos) {
             if (n.leaf) {
                 System.out.println(n.weigth + "-hoja");
@@ -46,7 +53,8 @@ public class ProblemaCiencias {
                 System.out.println(n.weigth + "-no hoja");
             }
         }
-         */
+        */
+        
         //System.out.println(maxvalueinminordepth.toString());
     }
 
