@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class Arbol {
 
-    //metodo actual de resolucion::::rellenar hojas con mayor no hoja del nivel 
-    //de abajo, los nodos en las ultimas dos profundidades siempre se rellenan 
-    //con unos
+    //Método de resolucion::::rellenar hojas con mayor no hoja del nivel 
+    //de abajo, los nodos en las ultimas dos profundidades (hojas) siempre se 
+    //rellenan con unos
     static HashMap<Integer, Integer> depths = new HashMap();
     static ArrayList<Nodo> nodos = new ArrayList<>();
     static HashMap<Integer, Integer> maxvalueinminordepth = new HashMap();
@@ -45,7 +45,7 @@ public class Arbol {
             //2.-Se crea el arbol, dentro de este método se encuentra el método
             //"crearDivision()"
             crearArbol();
-            //System.out.println(nodos.size());
+            
         } catch (NullPointerException exc) {
             System.out.println("Los datos que se entregaron, no forman un set"
                     + " de datos correcto");
@@ -58,13 +58,13 @@ public class Arbol {
             maxDepth = maxValue();
 
             //4.-Se rellena con ceros el hashmap de profundidades, hasta la 
-            //profundidad mas grande, este hashmap es para ver el valor del nodo en
-            //una profundidad menor
+            //profundidad mas grande, este hashmap es para ver el valor del nodo 
+            //en una profundidad menor
             rellenarZeros();
 
-            //System.out.println(nodos.get(0).weigth);
-            //5.-Se rellena considerando el mayor nodo (no hoja) de la profundidad anterior
-            //nota: las hojas en la mayor profundidad se rellenan con 1's
+            
+            //5.-Se rellena considerando el mayor nodo (no hoja) de la profundidad 
+            //anterior nota: las hojas en la mayor profundidad se rellenan con 1's
             rellenar();
             System.out.println("La palabra mas corta tiene " + nodos.get(0).weigth + " caracteres");
         }
@@ -83,8 +83,8 @@ public class Arbol {
         return aux;
     }
 
-    //4.-Se rellena el hashMap con puros 0 en los respectivos indices
-    //hasta llegar a la profundidad maxima, con tal de trabajar con niveles
+    //4.-Se rellena el HashMap con ceros en los respectivos indices
+    //hasta llegar a la profundidad maxima, con tal de trabajar con los niveles
     public static void rellenarZeros() {
         for (int i = 0; i <= maxDepth; i++) {
             //"valor maximo en la profundidad menor"
@@ -124,17 +124,17 @@ public class Arbol {
         crearDivision(head, 0);
     }
 
-    //2.1-Se crea la division (Objeto de clase Nodo:father, profundidad)
-    //Se trabaja considerando la profundidad+1, osea la profundidad de los poisbles hijos
-    //del nodo father , hya que denotrar que por definicion del programa 
-    //los valores de hojas en estas profundidades solo pueden ser mayores o iguales a cero
-    //es que en la siguiente profundidad hay hojas.
+    //2.1-Se crea la division (Objeto de clase Nodo:father, profundidad).
+    //Se trabaja considerando la profundidad+1, es decir, la profundidad de los 
+    //poisbles hijos del nodo father , hay que denotar que por definicion del 
+    //programa los valores de las hojas en estas profundidades solo pueden ser 
+    //mayores o iguales a cero es que en la siguiente profundidad hay hojas.
     //No hay que preocuparse de que el arbol pase de largo, ya que el hashmap 
     //solo tiene datos hasta la profundidad mas alta que hay
     public static void crearDivision(Nodo father, int depth) {
-        //si es que la cantidad de hojas en la profundidad, en la que se trabajara
+        //Si es que la cantidad de hojas en la profundidad en la que se trabajará
         //es una sola, se crean dos nodos, y a estos se le asigna el marcador de
-        //hoja y nodo, segun corresponde, luego se le asignan estos nodos al
+        //hoja y nodo según corresponde, luego se le asignan estos nodos al
         //padre, se eliminan 1 de la cantidad de hojas en la profundidad,
         //dejando esa profundidad en 0, finalmente se vuelve a aplicar el algoritmo 
         //para el nodo, que no es hoja
@@ -155,9 +155,10 @@ public class Arbol {
             crearDivision(h2, depth + 1);
             //Es hoja, por lo que no seguirá bajando en esta parte
 
-            //cuando la cantidad de hojas es mayor o igual a dos, simplemente se crean
-            //dos nodos hojas y se le asignan al padre, se eliminan dos hojas del contador
-            //y no se vuelve a aplicar el algoritmo, ya que las hojas no pueden tener hijos
+            //Cuando la cantidad de hojas es mayor o igual a dos, simplemente se 
+            //crean dos nodos hojas y se le asignan al padre, se eliminan dos 
+            //hojas del contador y no se vuelve a aplicar el algoritmo, ya que 
+            //las hojas no pueden tener hijos
         } else if (depths.get(depth + 1) >= 2) {
             Nodo h1 = new Nodo(depth + 1, true);//es hoja
             Nodo h2 = new Nodo(depth + 1, true);//es hoja
@@ -169,10 +170,11 @@ public class Arbol {
             nodos.add(h1);
             nodos.add(h2);
 
-            //el utlimo caso es cuando no hay hojas en la profundidad en la que se
-            //trabajara, en este caso, como existe el dato, significa que no hay hojas
-            //en este nivel, pero deben haber en niveles posteriores, por lo tanto se crean
-            //dos nodos no hojas, que pueden tener hijos y se vuelve a aplicar el algoritmo
+            //El útlimo caso es cuando no hay hojas en la profundidad en la que se
+            //trabajaraá en este caso, como existe el dato, significa que no hay 
+            //hojas en este nivel, pero deben haber en niveles posteriores, por 
+            //lo tanto se crean dos nodos no hojas, que pueden tener hijos y se 
+            //vuelve a aplicar el algoritmo
         } else if (depths.get(depth + 1) == 0) {
             //Se crea un nodo y una hoja
             Nodo h1 = new Nodo(depth + 1, false);//es un nodo puede tener hijos
@@ -204,7 +206,7 @@ public class Arbol {
                 }
             }
         }
-        //for "al revés" (de atras hacia adelante)
+        //for de atrás hacia adelante con inicio de profundidad máxima-1
         for (int i = maxDepth - 1; i >= 0; i--) {
 
             for (Nodo n : nodos) {
